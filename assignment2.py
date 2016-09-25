@@ -1,4 +1,5 @@
 #Assignment #2 Password Cracker
+#Michael Santoro 
 
 #mcrypt 
 #use a small english dictionary to crack the password
@@ -12,22 +13,18 @@
 import pwd, grp
 import crypt 
 
-#Reqeuest Username
-
-#print("Users: \n")
-#print()
-#for p in pwd.getpwall():
-#    print p[0], grp.getgrgid(p[3])[0]
-
 
 def checkDictionary(passwdHash, dictionary):
-    salt = passwdHash[0:11]
+    salt = passwdHash[0:11]          #this is actually the salt and the encryption method id...
+                                     #this allows the crypt functions to recognize the encryption method 
     file = open(dictionary, 'r')
+
     for word in file.readlines():
-        word = word.strip('\n')
-        wordHash = crypt.crypt(word, salt)
+        word = word.strip('\n')       #parse wordlist
+
+        wordHash = crypt.crypt(word, salt) #encrypt word and compare to the shadow file hash
         if (wordHash == passwdHash):
-            print "[+] Found Password: " + word + "\n"
+            print "Password: " + word + "\n"
             return
 
     print "Password is not in the dictionary.\n"
@@ -35,16 +32,31 @@ def checkDictionary(passwdHash, dictionary):
 
 
 def main():
-    shadow = open("/etc/shadow", 'r')
+
+    #accept and open shadow file
+    shadowPath = raw_input("Please enter the path to your shadow file: \n ")
+    try:
+        shadow = open(shadowPath, 'r')
+    except IOError:
+        print("File could not be opened. ")
+        return
+
+    #accept and search for username
     uName = raw_input("\nPlease enter a username from the list of users: \n")
-    print(uName)
 
     for line in shadow.readlines():
         if ":" in line:
-            uName = line.split(":")[0]
-            passwdHash = line.split(":")[1].strip(" ") 
-            print ("Username  " + uName + " is being processed")
-            checkDictionary(passwdHash, "/msanto7/cracklib-small")
+            tempU = line.split(":")[0]
+            if (uName == tempU):
+                passwdHash = line.split(":")[1].strip(" ") 
+                print ("Username: " + uName + " has been found. Cracking Password...")
+                checkDictionary(passwdHash, "/msanto7/cracklib-small")   #this dictionary is hard coded so make sure the path will work when downloaded 
+                return
+
+
+    print("Password not in dictionary")
+    return
+#start main function
 
 if __name__ == '__main__' :
     main()
