@@ -1,15 +1,15 @@
-# pythonCrack
-python dictionary password cracker
-Michael Santoro
+Python Crack - Michael Santoro 
+---------------------------------------
+--> This is a python script for cracking linux user passwords using the shadow file and a dictionary attack.
 
---> This is a python script for cracking linux user passwords using the shadow file and a dictionary attack
-
-GETTING STARTED 
+GETTING STARTED
+---------------------------------------- 
 -Begin by cloning this repository into the root directory and installing the necessary dependencies below.
   Any linux distrobution is recommened.
 
     Linux Command: git clone https://github.com/msanto7/pythonCrack.git
  
+----------------------------------------
 
 DEPENDENCIES 
 -----------------------------------------
@@ -23,6 +23,7 @@ DEPENDENCIES
  however it can be executed on a Windows or Mac operating system that has python and a path to 
  a local path to a linux shadow file. I will provide the commands for setup and execution based
  on an assumption of a linux host. 
+
 -----------------------------------------
 
 RUN THE APPLICATION
@@ -43,9 +44,9 @@ RUN THE APPLICATION
  is provided. If the password is in our dictionary file...it will be printed to the console when 
  found. Otherwise you will be notified that the password does not exist in our english dictionary. 
 
+---------------------------------------
 
-----------------------------------------
 TROUBLE SHOOTING
-
+----------------------------------------
 -Common problems for those setting up the application relate to file paths.
 
