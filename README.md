@@ -6,8 +6,11 @@ GETTING STARTED
 ---------------------------------------- 
 -Begin by cloning this repository into the root directory and installing the necessary dependencies below.
   Any linux distrobution is recommened.
-
+    
+    Linux Command: sudo su
+    Linux Command: cd /
     Linux Command: git clone https://github.com/msanto7/pythonCrack.git
+    Linux Command: cd /pythonCrack/python
  
 ----------------------------------------
 
@@ -30,7 +33,10 @@ RUN THE APPLICATION
 ----------------------------------------
 -To execute the program, we will need to run the assignmen2.py file in the python folder. 
 -Open a linux command prompt and use the, cd and ls commands to have the working directory 
- be the python folder in this cloned project. 
+ be the python folder in this cloned project.
+
+    Linux Command: cd /pythonCrack/python
+ 
 -Use the command below to run the program 
 
     Linux Command: python assignment2.py
@@ -46,7 +52,14 @@ RUN THE APPLICATION
 
 ---------------------------------------
 
-TROUBLE SHOOTING
+TESTING
 ----------------------------------------
--Common problems for those setting up the application relate to file paths.
+-To test the functionality of this program add a new user...and manipulate their password. 
 
+  Create new user
+    Linux Command: adduser <enterusername>
+
+-If you set the password to an english word you will find that the password cracker 
+ successfully finds the password
+
+Note: use passwords that start with the letter "a" to expediate testing time. 
