@@ -10,10 +10,47 @@
 #if password is not in dictionary print that 
 
 #################################################################
-import pwd, grp
+import pwd
 import crypt 
 
 
+def main():
+
+    #accept and open shadow file
+    shadowPath = raw_input("Please enter the path to your shadow file: \n ")
+    try:
+        shadow = open(shadowPath, 'r')
+    except IOError:
+        print("File could not be opened. ")
+        return
+    #print linux usernames 
+    i = 1
+    for p in pwd.getpwall():
+        print "    ", p[0],
+        if (i % 5 == 0):     #formatting
+            print "\n"
+        i = i + 1
+
+    #accept and search for username
+    uName = raw_input("\nPlease enter a username from the list of users: \n")
+
+    for line in shadow.readlines()
+        if ":" in line:    #shadow file is split by colons 
+            tempU = line.split(":")[0]  #store to compare to user input 
+            if (uName == tempU):
+                passwdHash = line.split(":")[1].strip(" ") 
+                print ("Username: " + uName + " has been found. Cracking Password...")
+                checkDictionary(passwdHash, "/pythonCrack/wordlist/cracklib-small")   #this dictionary is hard coded so make sure the path will work when downloaded 
+                return
+    #if no user name matches 
+    print("Username is invalid.")
+    return
+#start main function
+
+if __name__ == '__main__' :
+    main()
+
+##############################################
 def checkDictionary(passwdHash, dictionary):
     salt = passwdHash[0:11]          #this is actually the salt and the encryption method id...
                                      #this allows the crypt functions to recognize the encryption method 
@@ -30,41 +67,6 @@ def checkDictionary(passwdHash, dictionary):
     print "Password is not in the dictionary.\n"
     return
 
-
-def main():
-
-    #accept and open shadow file
-    shadowPath = raw_input("Please enter the path to your shadow file: \n ")
-    try:
-        shadow = open(shadowPath, 'r')
-    except IOError:
-        print("File could not be opened. ")
-        return
-    i = 1
-    for p in pwd.getpwall():
-        print "    ", p[0],
-        if (i % 5 == 0):
-            print "\n"
-        i = i + 1
-    #accept and search for username
-    uName = raw_input("\nPlease enter a username from the list of users: \n")
-
-    for line in shadow.readlines():
-        if ":" in line:
-            tempU = line.split(":")[0]
-            if (uName == tempU):
-                passwdHash = line.split(":")[1].strip(" ") 
-                print ("Username: " + uName + " has been found. Cracking Password...")
-                checkDictionary(passwdHash, "/msanto7/wordlist/cracklib-small")   #this dictionary is hard coded so make sure the path will work when downloaded 
-                return
-
-
-    print("Password not in dictionary")
-    return
-#start main function
-
-if __name__ == '__main__' :
-    main()
 
 
 #Use shadow file to find check if this user name exists
