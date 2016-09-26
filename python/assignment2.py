@@ -40,7 +40,12 @@ def main():
     except IOError:
         print("File could not be opened. ")
         return
-
+    i = 1
+    for p in pwd.getpwall():
+        print "    ", p[0],
+        if (i % 5 == 0):
+            print "\n"
+        i = i + 1
     #accept and search for username
     uName = raw_input("\nPlease enter a username from the list of users: \n")
 
@@ -50,7 +55,7 @@ def main():
             if (uName == tempU):
                 passwdHash = line.split(":")[1].strip(" ") 
                 print ("Username: " + uName + " has been found. Cracking Password...")
-                checkDictionary(passwdHash, "/msanto7/cracklib-small")   #this dictionary is hard coded so make sure the path will work when downloaded 
+                checkDictionary(passwdHash, "/msanto7/wordlist/cracklib-small")   #this dictionary is hard coded so make sure the path will work when downloaded 
                 return
 
 

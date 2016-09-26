@@ -42,3 +42,7 @@ RUN THE APPLICATION
 
 
 ----------------------------------------
+TROUBLE SHOOTING
+
+-Common problems for those setting up the application relate to file paths.
+
