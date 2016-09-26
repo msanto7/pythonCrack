@@ -5,8 +5,11 @@ Michael Santoro
 --> This is a python script for cracking linux user passwords using the shadow file and a dictionary attack
 
 GETTING STARTED 
--Begin by cloning this repository and installing the necessary dependencies below. Any linux distrobution is 
- recommened. 
+-Begin by cloning this repository into the root directory and installing the necessary dependencies below.
+  Any linux distrobution is recommened.
+
+    Linux Command: git clone https://github.com/msanto7/pythonCrack.git
+ 
 
 DEPENDENCIES 
 -----------------------------------------
